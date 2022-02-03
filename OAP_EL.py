@@ -265,7 +265,6 @@ def train(s, X, y, mat):
         
     return y_test_pred_all
 
-
 # compute prediction metrics with m replicates
 def pred_metrics(m, y):
     acc = []
