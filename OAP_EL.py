@@ -50,7 +50,7 @@ def adjacent_matrix(d):
 
     return mat
 
-# using synthetic data, suppose data size: 50x60
+# using synthetic data, suppose data size: 338 x 10 just for simple run
 # experiment setup only using small size data for convenience 
 np.random.seed(123)
 
