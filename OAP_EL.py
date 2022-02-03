@@ -16,7 +16,6 @@ from sklearn.metrics import confusion_matrix
 from statistics import mean, stdev
 from sklearn.cluster import SpectralClustering
 
-
 # load data
 df = pd.read_csv("ontology data.csv")
 
@@ -84,7 +83,6 @@ def meta_classifier(k):
                             layers.Dense(1, activation = tf.nn.sigmoid)])
     
     neuralNet.build(input_shape=(None,k))
-
     return neuralNet
 
 # define OAP_EL 
