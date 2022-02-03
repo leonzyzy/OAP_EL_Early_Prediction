@@ -297,11 +297,3 @@ def pred_metrics(m, y):
 
 # evaluation
 pred_metrics(2,y)  # suppose only 2 runs
-
-   
-    
-    
-    
-    
-    
-    
