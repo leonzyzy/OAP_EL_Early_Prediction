@@ -17,7 +17,7 @@ from statistics import mean, stdev
 from sklearn.cluster import SpectralClustering
 
 # load data
-df = pd.read_csv("ontology data.csv")
+df = pd.read_csv("...file...")
 
 # create an adjacent matrix
 def adjacent_matrix(d):
