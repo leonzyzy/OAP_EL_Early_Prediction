@@ -4,7 +4,8 @@ Created on Thu Apr 14 23:23:13 2022
 
 @author: liz27
 """
-# precision-recall curve and f1
+
+# import packages
 import pandas as pd
 from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import auc
@@ -17,7 +18,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn import metrics
 
 
-# also for mNN
+# read results
 df = pd.read_csv('...result...file')
 y_test = np.array(df['y'])
 
@@ -50,7 +51,7 @@ probs_abel = np.array(df['pabel'])
 probs_mNN = np.array(df['pmnn'])
 
 
-# accuracy
+# function to compute metrics
 def metrics(y1,y2):
     cm = confusion_matrix(y2, y1)
     total = sum(sum(cm))
@@ -87,8 +88,6 @@ auc_bagging = round(roc_auc_score(y_test, probs_bagging), 4)
 auc_stacking = round(roc_auc_score(y_test, probs_stacking), 4)
 auc_abel = round(roc_auc_score(y_test, probs_abel), 4)
 auc_mNN = round(roc_auc_score(y_test, probs_mNN), 4)
-
-
 
 
 # compute recall and spec for ROC
@@ -162,7 +161,7 @@ pre_abel, re_abel, _ = precision_recall_curve(y_test, probs_abel)
 pre_mNN, re_mNN, _ = precision_recall_curve(y_test, probs_mNN)
 
 
-# get f1 score
+# get prauc score
 pr = auc(re, pre)
 prknn = auc(re_knn, pre_knn)
 prlr = auc(re_lr, pre_lr)
@@ -170,14 +169,11 @@ prdt = auc(re_dt, pre_dt)
 prrf = auc(re_rf, pre_rf)
 prnn = auc(re_nn, pre_nn)
 prsvm = auc(re_svm, pre_svm)
-
-# get f1 score
 prvoting = auc(re_voting, pre_voting)
 prbagging = auc(re_bagging, pre_bagging)
 prstacking = auc(re_stacking, pre_stacking)
 prable = auc(re_abel, pre_abel)
 prmnn =  auc(re_mNN, pre_mNN)
-
 
 # plot the precision-recall curves
 plt.figure(figsize=(15,15))
@@ -207,7 +203,6 @@ plt.plot(re_abel, pre_abel, marker='.', label='AB-EL (PRAUC: %0.2f)'% prable
 plt.plot(re_mNN, pre_mNN, marker='.', label='OAP-mNN (PRAUC: %0.2f)'% prmnn
          , color = 'violet', lw=2.5, alpha=.5)
 plt.plot([0, 1], [no_skill, no_skill], linestyle='--', label='Random (PRAUC: %0.2f)'% no_skill) 
-
 
 plt.xlabel('Recall')
 plt.ylabel('Precision')
